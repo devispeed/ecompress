@@ -24,7 +24,7 @@ body {
   padding: 15px 0;
 }
 
-.custom-from-control,
+.custom-form-control,
 .dropdown a.custom-btn {
   border: 1px solid #ebebeb;
   box-shadow: none;
@@ -35,7 +35,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.custom-from-control:focus {
+.custom-form-control:focus {
   border-color: #c2101e;
   box-shadow: 0 0 2px 0 #c2101e;
 }
@@ -631,9 +631,17 @@ body {
   border-color: #b9001b;
   color: #b9001b;
 }
-
-
-
+/* ! ==================================================== ! */
+/* * ================== payment Page * ==================== */
+/* ! ==================================================== ! */
+.custom-input.details{
+  border-width: 2px;
+  border-radius: 3px;
+  height: 46px !important;
+  padding: 0 16px;
+  font-size: 18px;
+  width: 98%;
+}
 
 
 
@@ -699,7 +707,7 @@ body {
     display: none;
   }
 
-  .inline-form .custom-from-control {
+  .inline-form .custom-form-control {
     width: 90%;
   }
 
@@ -814,7 +822,7 @@ body {
 }
 
 @media (max-width: 576px) {
-  .inline-form .custom-from-control {
+  .inline-form .custom-form-control {
     width: 80% !important;
   }
 

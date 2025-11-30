@@ -48,7 +48,7 @@ document.querySelectorAll("[data-product-quantity]").forEach((item) => {
     parent.querySelector(".total-price-for-product").innerHTML =
       totalPriceForProduct + "$";
     // **
-    calculateTotalPrice()
+    calculateTotalPrice();
   });
 });
 // * حذف المنتجات
@@ -57,7 +57,7 @@ document.querySelectorAll("[data-remove-from-card]").forEach((item) => {
   item.addEventListener("click", () => {
     item.closest("[data-product-info]").remove();
     // **
-    calculateTotalPrice()
+    calculateTotalPrice();
   });
 });
 
@@ -73,6 +73,68 @@ function calculateTotalPrice() {
   document.getElementById("total-price-for-all-product").innerHTML =
     totalPriceForAllProduct + "$";
 }
+
+// ** ___________________________________________
+
+const sitiesByCountry = {
+  sa: ["الجدة", "الرياض"],
+  eg: ["القاهرة", "الاسكرندرية"],
+  jo: ["عمان", "الزرقاء"],
+  sy: ["دمشق", "حلب", "حماء"],
+};
+
+document.querySelectorAll('select[name="country"]').forEach((item) => {
+  item.addEventListener("change", () => {
+    const country = item.value;
+
+    const cities = sitiesByCountry[country];
+
+    document
+      .querySelectorAll("#paymentcities option")
+      .forEach((option) => option.remove());
+
+    const firstOption = document.createElement("option");
+    const optionText = document.createTextNode("اختر المدينة");
+    firstOption.appendChild(optionText);
+    firstOption.setAttribute("value");
+    firstOption.setAttribute("disabled", "true");
+    firstOption.setAttribute("selected", "true");
+
+    const city_options = document.getElementById("paymentcities");
+    city_options.appendChild(firstOption);
+
+    cities.forEach((city) => {
+      const newOption = document.createElement("option");
+      const optionText = document.createTextNode(city);
+      newOption.appendChild(optionText);
+      newOption.setAttribute("value", city);
+      city_options.appendChild(newOption);
+    });
+  });
+});
+
+/** اخفاء و اضهار حقوق ادخال البطاقة الائتمانية */
+// ** ___________________________________________
+document
+  .querySelectorAll('#form-checkout input[name="payment-method"]')
+  .forEach((item) => {
+    item.addEventListener("change", () => {
+      const paymentMethod = item.value;
+      const creditCardInputs = document.querySelectorAll(
+        "#credit-card-info input"
+      );
+
+      if (paymentMethod === "on_delivery") {
+        creditCardInputs.forEach((input) => {
+          input.style.display = "none";
+        });
+      } else {
+        creditCardInputs.forEach((input) => {
+          input.style.display = "block";
+        });
+      }
+    });
+  });
 
 document.getElementById("copyright").innerHTML =
   "جميع الحقوق محفوضة سنة " + new Date().getFullYear();
